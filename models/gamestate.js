@@ -11,6 +11,10 @@ const GameStateSchema = new Schema({
     type: [],
     required: true
   },
+  username: {
+    type: String,
+    required: true
+  },
 
 });
 module.exports = GameState = mongoose.model("gamestate", GameStateSchema);

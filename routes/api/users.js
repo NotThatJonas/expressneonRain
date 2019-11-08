@@ -90,6 +90,26 @@ router.post("/login", (req, res) => {
         }
       });
     });
+
+   
   });
+
+  router.get("/", (req, res)=> {
+    res.send("hello")
+  })
+
+  router.post("/gamestate", (req, res) => {
+   
+    User.findOneAndUpdate( { username: req.body.username }, { userDeck: req.body.userDeck, winCount:req.body.winCount }).then(user => {
+            console.log(user);
+            if (!user) {
+                return res.status(400).json({msg: "unable to save"});
+              } 
+              return res.status(200).json({success:true})
+
+    })
+
+  })
+
 
   module.exports = router;
