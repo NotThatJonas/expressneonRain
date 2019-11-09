@@ -15,12 +15,15 @@ app.use(
 app.use(bodyParser.json());
 // DB Config
 const db = require("./config/keys").mongoURI;
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/neonraindb'
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
 // Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
+// mongoose
+//   .connect(
+//     db,
+//     { useNewUrlParser: true }
+//   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
@@ -50,7 +53,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
   });
-  
+
 // Routes
 app.use("/api/users", users);
 
