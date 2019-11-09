@@ -14,7 +14,7 @@ app.use(
 );
 app.use(bodyParser.json());
 // DB Config
-const db = require("./config/keys").mongoURI;
+// const db = require("./congfig/keys");
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/neonraindb'
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
