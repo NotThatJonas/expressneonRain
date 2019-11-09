@@ -96,6 +96,10 @@ router.post("/login", (req, res) => {
 
   router.get("/", (req, res)=> {
     res.send("hello")
+    // User.findAll({userDeck: req.body.userDeck}).then(
+
+
+    // )
   })
 
   router.post("/gamestate", (req, res) => {
