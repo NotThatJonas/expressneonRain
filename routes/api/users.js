@@ -94,15 +94,19 @@ router.post("/login", (req, res) => {
    
   });
 
-  router.get("/", (req, res)=> {
-    res.send("hello")
-    // User.findAll({userDeck: req.body.userDeck}).then(
-
-
-    // )
+  router.get("/get/gamestate", (req, res)=> {
+    User.findOne({username: req.body.username}, {userDeck: req.body.userDeck, winCount:req.body.winCount}).then(user => {
+      console.log(user);
+      res.json(User)
+      if (!user) {
+          return res.status(400).json({msg: "did not grab"});
+        } 
+        return res.status(200).json({success:true})
+      
   })
+})
 
-  router.post("/gamestate", (req, res) => {
+  router.post("/post/gamestate", (req, res) => {
    
     User.findOneAndUpdate( { username: req.body.username }, { userDeck: req.body.userDeck, winCount:req.body.winCount }).then(user => {
             console.log(user);

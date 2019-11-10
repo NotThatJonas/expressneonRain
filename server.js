@@ -36,7 +36,7 @@ require("./config/passport")(passport);
 app.use(function (req, res, next) {
     // Website you wish to allow to
     //either localhost:3000 or heroku deployed link (https://guarded-sands-13025.herokuapp.com)
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", "https://neonraingame.herokuapp.com");
     // Request methods you wish to allow
     res.setHeader(
       "Access-Control-Allow-Methods",
