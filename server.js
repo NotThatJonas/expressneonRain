@@ -6,6 +6,24 @@ const passport = require("passport");
 const users = require("./routes/api/users");
 
 const app = express();
+const cookieParser = require('cookie-parser');
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session);
+
+// mongoose.connect('mongodb://localhost/my-database', {
+//     useMongoClient: true
+// });
+// mongoose.Promise = global.Promise;
+// const db = mongoose.connection
+
+// app.use(cookieParser());
+// app.use(session({
+//     secret: 'my-secret',
+//     resave: false,
+//     saveUninitialized: true,
+//     store: new MongoStore({ mongooseConnection: db })
+// }));
+
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({

@@ -119,5 +119,20 @@ router.post("/login", (req, res) => {
 
   })
 
+  // router.post("/", function(req, res) {
+  //   // Create an Jokes with the data available to us in req.body
+  //   if(!req.session.user){
+  //     // res.redirect("/auth/login")
+  //     res.send("you must login to post!")
+  //   } else{
+  //   db.Jokes.create({
+  //     joke: req.body.joke,
+  //     UserId: req.session.user.id
+  //   }).then(function(dbJokes) {
+  //     res.json(dbJokes);
+  //   });
+  // }
+  // });
+
 
   module.exports = router;
