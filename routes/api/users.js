@@ -141,15 +141,11 @@ router.post("/login", (req, res) => {
     }
   })
 
-  router.get("/gamestate", async (req,res) => {
-    const { username, userDeck, winCount} = req.body;
+  router.get("/gamestate", async (req, res) => {
     try {
-      const { userDeck, winCount} = await User.findOne({username}, {
-        userDeck: 1,
-        wincount: 1
-      })
+      const userInfo  = await User.findOne({username: req.body.username})
 
-      res.json(userDeck,winCount)
+      res.json(userInfo)
     } catch (err) {
       //does something
     }
