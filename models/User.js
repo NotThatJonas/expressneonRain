@@ -1,33 +1,41 @@
 
 const mongoose = require("mongoose");
+const userDeckSchema = require('./userDeck');
 const Schema = mongoose.Schema;
+
 // Create Schema
 const UserSchema = new Schema({
   username: {
-    type: String,
-    required: true
+    type: mongoose.SchemaTypes.String,
+    required: true,
+    unique: true
   },
   password: {
-    type: String,
+    type:  mongoose.SchemaTypes.String,
     required: true
   },
   date: {
-    type: Date,
+    type:  mongoose.SchemaTypes.Date,
     default: Date.now
   },
-  winCount: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "winCount"
-    }
-  ],
-  userDeck: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "userDeck"
-    }
-  ]
+  winCount: {
+    type: mongoose.SchemaTypes.Number
+  },
+  userDeck: {
+    type: [userDeckSchema]
+  }
 });
+
+
+
+UserSchema.methods.userView = () => {
+  return {
+    _id: this._id,
+    username: this.username,
+    winCount: this.winCount,
+    userDeck: this.userDeck
+  }
+}
 module.exports = User = mongoose.model("users", UserSchema);
 
 
