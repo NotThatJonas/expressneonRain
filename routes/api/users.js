@@ -47,6 +47,9 @@ router.post("/register", (req, res) => {
 // @access Public
 router.post("/login", (req, res) => {
     // Form validation
+    console.log(req)
+  
+    
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation
     if (!isValid) {
@@ -56,6 +59,8 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
   // Find user by email
     User.findOne({ username }).then(user => {
+      
+      
       // Check if user exists
       if (!user) {
         return res.status(404).json({ usernamenotfound: "Username not found" });
@@ -106,10 +111,22 @@ router.post("/login", (req, res) => {
   })
 })
 
+//post deck and the username
+//on route define /battlepage logic
+//mongoose find one username
+//moongoose put where username and deck are vairables
+
+//user.findone ({username: select _id})
+//schema.find User.find({username: username}) <gets entire object> 
+//user.id pass that into the put request so userdeck can be joined
+
+//Axios find one then(user => { user.update //post/updateuser
+//req.body.userdeck
+
   router.post("/post/gamestate", (req, res) => {
    
     User.findOneAndUpdate( { username: req.body.username }, { userDeck: req.body.userDeck, winCount:req.body.winCount }).then(user => {
-            console.log(user);
+            
             if (!user) {
                 return res.status(400).json({msg: "unable to save"});
               } 
